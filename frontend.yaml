@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+  labels:
+    app: front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front-c1
+          image: lokesh258/front-2:2
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BACKEND_URL
+              value: "http://backend-servicess:3004/api/todos"
+            
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-servicess
+  labels:
+    app: front
+spec:
+  type: LoadBalancer
+  selector:
+    app: front
+  ports:
+    - port: 3006
+      targetPort: 3000
+
+
