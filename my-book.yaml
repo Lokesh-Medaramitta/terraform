@@ -1,0 +1,9 @@
+apiVersion: mycompany.com/v1
+kind: Book
+metadata:
+  name: my-first-book
+spec:
+  title: "The Great Gatsby"
+  author: "F. Scott Fitzgerald"
+  publishedDate: "1925-04-10"
+
